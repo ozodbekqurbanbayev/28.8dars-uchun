@@ -1,0 +1,337 @@
+:root{
+  --standart-seat:#03a9f4;
+  --vip-seat:#8bc34a;
+  --boked-seat:#ccc;
+}
+html{
+  box-sizing: border-box;
+}
+*,
+*::before,
+*::after{
+  box-sizing: inherit;
+}
+body{
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  font-family: 'Roboto', sans-serif;
+  background-color: darkcyan;
+}
+img{
+  max-width: 100%;
+  height: auto;
+
+}
+.visuallyhidden {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+.container{
+  max-width: 800px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+
+
+}
+.dividir{
+  border: none;
+  height: 1px;
+  background-color: #AAA;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+/* .FORM */
+.ticket-form{
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.movie-info-title-wrapper{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.movie-info-title{
+  margin: 0;
+  margin-right: 20px;
+  line-height: 1.2;
+}
+.movie-info{
+  position: relative;
+  z-index: 1;
+  padding-right: 60px;
+}
+.movie-info__badge{
+  display: inline-block;
+  padding: 5px;
+  border-radius: 5px;
+  margin-right: 10px;
+  background-color: #666;
+}
+.movie-info__cinema-name{
+  margin-top: 0;
+  color: #AAA;
+}
+.ticket-form__close{
+  position: absolute;
+  z-index: 1;
+  right: 0px;
+  top: 0px;
+  width: 50px;
+  height: 50px;
+  border: 3px solid white;
+  border-radius: 50%;
+  background-color: transparent;
+  background-image: url(  https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxVwi_4Kqu4zs665UF4myqkfvO3jRw7SvQB6X3xMUwGF9X6Wjm9n_GhCPu14xIfHuTzi0&usqp=CAU
+  );
+  background-repeat: no-repeat;
+  background-size: 80%;
+  background-position: center center;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.4s ease;
+}
+.ticket-form__close:hover,
+.ticket-form__close:focus
+{
+  opacity: 1;
+}
+/* CINAME */
+.ciname{
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.ciname-screen{
+  display: flex;
+  justify-content: center;
+  height: 130px;
+}
+.ciname-poster{
+  transform-style: preserve-3d;
+  height: 240px;
+  transform-origin: center top;
+  transform: perspective(2000px) rotateX(-65deg);
+  border-radius: 10px;
+  box-shadow:0 20px  10px -10px rgba(255, 255, 255, 0.4);
+}
+
+.ciname-seats-list{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+}
+.seat{
+  transform-style: preserve-3d;
+  transform-origin: center bottom;
+  transform: perspective(2000px) rotateX( 45deg);
+}
+.ciname-seats-list:not(:last-child){
+  margin-bottom: 30px;
+}
+.ciname-seats-list::before ,
+.ciname-seats-list::after{
+  font-size: 13px;
+  color: #fff;
+
+}
+.ciname-seats-list:first-child::before,
+.ciname-seats-list:first-child::after{
+  content: "1";
+}
+
+.ciname-seats-list:nth-child(2)::before,
+.ciname-seats-list:nth-child(2)::after{
+  content: "2";
+}
+.ciname-seats-list:nth-child(3)::before,
+.ciname-seats-list:nth-child(3)::after{
+  content: "3";
+}
+.ciname-seats-list:nth-child(4)::before,
+.ciname-seats-list:nth-child(4)::after{
+  content: "4";
+}
+
+.ciname-seat{
+  width: 25px;
+  height: 25px;
+  transform: translateZ(10px);
+}
+/* CHECKBOXS */
+/* ODDIY HOLATI */
+.seat{
+
+  display: block;
+}
+.seat-controls{
+  cursor: pointer;
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+  height: 25px;
+  font-size: 14px;
+  border-radius: 50%;
+  background-color: var(--standart-seat)
+
+
+}
+.seat-vip .seat-controls{
+  background-color: var(--vip-seat);
+}
+.seat-controls::before{
+  position: absolute;
+  z-index: 1;
+  top: -5px;
+  bottom: -5px;
+  right: -5px;
+  left: -5px;
+  border: 1px dotted var(--standart-seat);
+  border-radius: 50%;
+  content: "";
+  transform: scale(0);
+  opacity: 0;
+  transition: border 0.3s ease, transition 0.3s ease , opacity 0.3s ease;
+}
+.seat-vip .seat-controls::before{
+  border: 1px dotted var(--vip-seat);
+}
+.seat-number{
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+/* FOKUS HOLATI */
+.seat_checkbox:focus +.seat-controls::before{
+  opacity: 1;
+  transform: scale(1);
+}
+.seat_checkbox:focus + .seat-controls .seat-number{
+  opacity: 1;
+}
+
+/* HOVER HOLATI */
+.seat:hover  .seat-controls::before{
+  border: 1px solid var(--standart-seat);
+  opacity: 1;
+  transform: scale(1);
+}
+.seat-vip:hover  .seat-controls::before{
+  border: 1px solid var(--vip-seat);
+
+}
+.seat:hover  .seat-number{
+  opacity: 1;
+}
+/* ACTIVE HOLATI */
+.seat:active .seat-checkbox:not(disabled) + .seat-controls{
+  opacity: 0.5;
+}
+/* CHECKED HOLATI */
+.seat-checkbox:checked + .seat-controls::before{
+  transform: scale(1);
+  opacity: 1;
+  border: 3px solid var(--standart-seat);
+}
+.seat-checkbox:checked +.seat-controls .seat-number{
+  opacity: 1;
+}
+.seat-vip .seat-checkbox:checked +.seat-controls::before{
+  border: 3px solid var(--vip-seat);
+}
+/* DISABLED HOLATI */
+.seat-checkbox:disabled + .seat-controls{
+  background-color: #ccc;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.seat-checkbox:disabled + .seat-controls::before{
+  transform: scale(0);
+  opacity: 0;
+
+}
+
+.seat-checkbox:disabled + .seat-controls .seat-number{
+  opacity: 1;
+  color: #777;
+}
+/* SEATS-PRICES */
+
+.form-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.seats-prices {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  color: #ddd;
+  font-size: 14px;
+
+}
+.seats-price {
+  display: flex;
+  align-items: center;
+  margin-right: 30px;
+}
+.seats-price::before{
+  content: "";
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: red;
+  margin-right: 10px;
+  background-color: var(--standart-seat);
+
+}
+
+.seats-price-vip::before{
+  background-color: var(--vip-seat);
+}
+
+.seats-price-boked::before{
+  background-color: #ccc;
+}
+.ticket-form-submit{
+border:none;
+background-color: var(--standart-seat);
+padding: 10px 20px;
+border-radius: 5px;
+text-transform: uppercase;
+color: #fff;
+font-weight: bold;
+letter-spacing: 1px;
+cursor: pointer;
+}
+.ticket-form-submit:hover{
+  opacity: 0.8;
+}
+.ticket-form-submit:active{
+  opacity: 0.6;
+}
+
+/* BOX */
